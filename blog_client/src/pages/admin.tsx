@@ -29,17 +29,15 @@ export default function Admin({ posts }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h1>Next.js + Rails Blog</h1>
-        <Link href="/createPost" className={styles.createButton}>Create Post</Link>
-      </header>
       <main className={styles.main}>
+        <Link href="/createPost" className={styles.createButton}>Create Post</Link>
         <div>
           {posts.map((post: Post) => (
             <div key={post.id} className={styles.postCard}>
               <Link href={`posts/${post.id}`} className={styles.postCardBox}>
                 <h2>{post.title}</h2>
               </Link>
+              <p>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
               <p>{post.content}</p>
               <Link href={`/editPost/${post.id}`}>
                 <button className={styles.editButton}>Edit</button>

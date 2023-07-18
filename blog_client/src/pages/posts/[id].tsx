@@ -2,6 +2,7 @@ import React from 'react'
 import { Post } from '@/types'
 import { useRouter } from 'next/router'
 import styles from '@/styles/Post.module.css'
+import Header from '../components/header';
 
 type Props = {
     post: Post;
@@ -41,12 +42,17 @@ const Post = ({ post }: Props) => {
     }
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.blogTitle}>{post.title}</h1>
-            <div className={styles.blogCreatedDate}>{post.created_at}</div>
-            <div className={styles.blogUpdatedDate}>{post.updated_at}</div>
-            <div className={styles.blogContent}>{post.content}</div>
-        </div>
+        <>
+        <Header />
+        <main className={styles.main}>
+            <div className={styles.container}>
+                <h1 className={styles.blogTitle}>{post.title}</h1>
+                <div className={styles.blogCreatedDate}>{post.created_at}</div>
+                <div className={styles.blogUpdatedDate}>{post.updated_at}</div>
+                <div className={styles.blogContent}>{post.content}</div>
+            </div>
+        </main>
+    </>
     )
 }
 

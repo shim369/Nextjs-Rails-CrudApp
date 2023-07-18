@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import { Post } from '@/types'
+import Header from './components/header';
 
 type Props = {
   posts: Post[];
@@ -18,9 +19,7 @@ export default function Home({ posts }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={styles.header}>
-        <h1>Next.js + Rails Blog</h1>
-      </header>
+      <Header />
       <main className={styles.main}>
         <div className={styles.postCardBox}>
           {posts.map((post: Post) => (
