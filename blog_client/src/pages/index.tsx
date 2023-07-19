@@ -25,9 +25,9 @@ export default function Home({ posts }: Props) {
           {posts.map((post: Post) => (
             <div key={post.id} className={styles.postCard}>
               <Link href={`posts/${post.id}`} className={styles.postCardLink}>
-                <h2>{post.title}</h2>
-              <p>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
-              <p>{post.content}</p>
+                <h2 className={styles.postTitle}>{post.title}</h2>
+                <p className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
+                <p className={styles.postContent}>{post.content}</p>
               </Link>
             </div>
           ))}

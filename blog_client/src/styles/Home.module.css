@@ -16,12 +16,35 @@
     width: 32%;
     margin: 0 0 40px;
     background: #fff;
-    box-shadow: 0px 11px 15px -4px #cfcece;
+    box-shadow: 0px 5px 12px -4px #cfcece;
     text-decoration: none;
     transition: all .3s ease; 
     padding: 20px;
+    cursor: pointer;
 }
 
 .postCard:hover {
     box-shadow: none;
+}
+
+.postTitle {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.postDate {
+    margin-bottom: 10px;
+    font-size: .8em;
+    display: flex;
+    align-items: center;
+}
+
+.postDate i {
+    font-size: 1em;
+    margin-right: 3px;
+}
+
+.postContent {
+    font-size: 1em;
 }
