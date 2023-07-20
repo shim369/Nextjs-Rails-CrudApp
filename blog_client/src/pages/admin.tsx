@@ -4,6 +4,7 @@ import styles from '@/styles/Home.module.css'
 import { Post } from '@/types'
 import axios from "axios"
 import { useRouter } from 'next/router'
+import { signOut } from 'next-auth/react'
 
 type Props = {
   posts: Post[];
@@ -20,6 +21,9 @@ export default function Admin({ posts }: Props) {
       alert("削除に失敗しました")
     }
   }
+  const handleLogout = () => {
+    signOut({ callbackUrl: `${window.location.origin}/` });
+  }
 
   return (
     <>
@@ -30,6 +34,7 @@ export default function Admin({ posts }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <button onClick={handleLogout}>Logout</button>
         <Link href="/createPost" className={styles.createButton}>Create Post</Link>
         <div>
           {posts.map((post: Post) => (
