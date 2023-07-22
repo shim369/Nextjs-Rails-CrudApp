@@ -1,3 +1,7 @@
+.headerLinks a {
+    padding: 10px;
+}
+
 .postCardBox {
     display: flex;
     position: relative;
