@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
+import styles from '@/styles/Home.module.css'
 
 export default function LoginPage() {
   const [isEmailSubmitted, setEmailSubmitted] = useState(false);
@@ -15,52 +16,85 @@ export default function LoginPage() {
 
   const handlePasswordSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    const response = await axios.post('http://localhost:3001/api/sessions', { email, password });
-    if (response.status === 200) {
-      signIn('credentials', { 
-        email, 
-        password, 
-        callbackUrl: `${window.location.origin}/admin` 
-      }).then(() => {
-        // ログインが成功したら/adminにリダイレクト
-        window.location.href = "/admin";
-      });
-    } else {
-      setLoginError("Invalid email or password");
+    try {
+      const response = await axios.post('http://localhost:3001/api/sessions', { email, password });
+      console.log(response);
+      if (response.status === 200) {
+        signIn('credentials', { 
+          email, 
+          password, 
+          callbackUrl: `${window.location.origin}/admin` 
+        }).then(() => {
+          window.location.href = "/admin";
+        }).catch((error) => {
+          console.error(error);
+          setLoginError("An unexpected error occurred");
+        });
+      } else {
+        setLoginError("Invalid email or password");
+        throw new Error('Invalid email or password');
+      }
+    } catch (error) {
+      console.error(error);
+      setLoginError("An unexpected error occurred");
     }
   };  
+  
 
   return (
-    <div>
-      <h1>Welcome back</h1>
-      {!isEmailSubmitted ? (
-        <form onSubmit={handleEmailSubmit}>
-          <div><input 
-            name='email' 
-            type='email' 
-            placeholder='Email address'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-          /></div>
-          <button type='submit'>Continue</button>
-        </form>
-      ) : (
-        <form onSubmit={handlePasswordSubmit}>
-          <input 
-            name='password' 
-            type='password' 
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {loginError && <p>{loginError}</p>}
-          <button type='submit'>Submit</button>
-        </form>
-      )}
-      <p>--- OR ---</p>
-      <button onClick={() => signIn('google', { callbackUrl: `${window.location.origin}/admin` })}>
-        Continue with Google
-      </button>
-    </div>
+    <main className={styles.main}>
+      <div className={styles.loginBox}>
+        <h1>Welcome back</h1>
+        {!isEmailSubmitted ? (
+          <EmailInputForm handleEmailSubmit={handleEmailSubmit} email={email} setEmail={setEmail} />
+        ) : (
+          <PasswordInputForm handlePasswordSubmit={handlePasswordSubmit} password={password} setPassword={setPassword} loginError={loginError} />
+        )}
+        <p>--- OR ---</p>
+        <button onClick={() => signIn('google', { callbackUrl: `${window.location.origin}/admin` })}>
+          Continue with Google
+        </button>
+      </div>
+    </main>
   )
 }
+
+type EmailInputFormProps = {
+  handleEmailSubmit: (e: { preventDefault: () => void }) => void;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const EmailInputForm: React.FC<EmailInputFormProps> = ({ handleEmailSubmit, email, setEmail }) => (
+  <form onSubmit={handleEmailSubmit}>
+    <div><input 
+      name='email' 
+      type='email' 
+      placeholder='Email address'
+      value={email}
+      onChange={(e) => setEmail(e.target.value)} 
+    /></div>
+    <button type='submit'>Continue</button>
+  </form>
+);
+
+type PasswordInputFormProps = {
+  handlePasswordSubmit: (e: { preventDefault: () => void }) => Promise<void>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  loginError: string | null;
+};
+
+const PasswordInputForm: React.FC<PasswordInputFormProps> = ({ handlePasswordSubmit, password, setPassword, loginError }) => (
+  <form onSubmit={handlePasswordSubmit}>
+    <input 
+      name='password' 
+      type='password' 
+      placeholder='Password'
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
+    {loginError && <p>{loginError}</p>}
+    <button type='submit'>Submit</button>
+  </form>
+);

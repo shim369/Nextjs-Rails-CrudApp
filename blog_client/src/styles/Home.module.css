@@ -7,6 +7,7 @@
     position: relative;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
 }
 
 .postCardLink {
@@ -51,4 +52,14 @@
 
 .postContent {
     font-size: 1em;
+}
+
+.loginBox {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoutButton {
+    width: 100px;
 }

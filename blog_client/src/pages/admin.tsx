@@ -6,6 +6,7 @@ import axios from "axios"
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
 
+
 type Props = {
   posts: Post[];
 };
@@ -34,7 +35,7 @@ export default function Admin({ posts }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
         <Link href="/createPost" className={styles.createButton}>Create Post</Link>
         <div>
           {posts.map((post: Post) => (
