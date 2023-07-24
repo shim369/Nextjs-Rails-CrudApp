@@ -1,7 +1,7 @@
 import React from 'react'
 import { Post } from '@/types'
 import { useRouter } from 'next/router'
-import styles from '@/styles/Post.module.css'
+import styles from '@/styles/Home.module.css'
 import Header from '../components/header';
 
 type Props = {

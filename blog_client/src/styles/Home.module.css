@@ -1,5 +1,11 @@
+.logo {
+    color: #fff;
+}
+
 .headerLinks a {
     padding: 10px;
+    text-decoration: none;
+    color: #fff;
 }
 
 .postCardBox {
@@ -11,8 +17,6 @@
 }
 
 .postCardLink {
-    text-decoration: none;
-    color: #000;
 }
 
 .postCard {
@@ -20,8 +24,8 @@
     z-index: 1;
     width: 32%;
     margin: 0 0 40px;
-    background: #fff;
-    box-shadow: 0px 5px 12px -4px #cfcece;
+    background: #616060;
+    box-shadow: 0px 5px 12px -4px #2e2d2d;
     text-decoration: none;
     transition: all .3s ease; 
     padding: 20px;
@@ -55,11 +59,24 @@
 }
 
 .loginBox {
-    width: 80%;
-    margin: 0 auto;
+    /* width: 80%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageTitle {
     text-align: center;
 }
 
 .logoutButton {
     width: 100px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

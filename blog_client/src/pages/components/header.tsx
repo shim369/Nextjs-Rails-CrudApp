@@ -6,7 +6,7 @@ const header = () => {
 
   return (
     <header className={styles.header}>
-      <h1>Next.js + Rails Blog</h1>
+      <h1 className={styles.logo}>Next.js + Rails Blog</h1>
       <div className={styles.headerLinks}>
         <Link href="/login">Log in</Link>
       </div>

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import styles from '@/styles/Post.module.css'
+import styles from '@/styles/Home.module.css'
 import axios from "axios"
 import { useRouter } from 'next/router'
 
@@ -42,9 +42,10 @@ const EditPost = ({ post }: Props) => {
     };
 
     return (
+      <main className={styles.main}>
         <div className={styles.container}>
-            <h1>ブログ編集</h1>
-            <form onSubmit={handleSubmit}>
+            <h1 className={styles.pageTitle}>ブログ編集</h1>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <label>タイトル</label>
                 <input
                     type="text"
@@ -58,8 +59,8 @@ const EditPost = ({ post }: Props) => {
                 />
                 <button type='submit'>編集</button>
             </form>
-
         </div>
+      </main>
     )
 }
 

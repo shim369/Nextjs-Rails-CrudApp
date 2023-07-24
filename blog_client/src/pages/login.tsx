@@ -44,7 +44,7 @@ export default function LoginPage() {
   return (
     <main className={styles.main}>
       <div className={styles.loginBox}>
-        <h1>Welcome back</h1>
+        <h1 className={styles.pageTitle}>Welcome back</h1>
         {!isEmailSubmitted ? (
           <EmailInputForm handleEmailSubmit={handleEmailSubmit} email={email} setEmail={setEmail} />
         ) : (
