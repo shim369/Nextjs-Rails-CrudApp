@@ -33,3 +33,26 @@ main {
     align-items: center;
     justify-content: center;
 }
+
+input, textarea {
+    color: #fff;
+    background: #3d3d3d;
+    font-size: 15px;
+    transition: all .3s;
+    padding: 13px;
+    width: 100%;
+    border: none;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+button {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px 20px;
+    margin: 20px 5px;
+    display: inline-block;
+    transition: all .5s ease;
+    background: transparent;
+    cursor: pointer;
+}

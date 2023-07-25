@@ -70,7 +70,7 @@ const EmailInputForm: React.FC<EmailInputFormProps> = ({ handleEmailSubmit, emai
     <div><input 
       name='email' 
       type='email' 
-      placeholder='Email address'
+      placeholder='Email'
       value={email}
       onChange={(e) => setEmail(e.target.value)} 
     /></div>
