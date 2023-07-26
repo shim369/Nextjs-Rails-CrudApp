@@ -23,13 +23,13 @@ export default function Home({ posts }: Props) {
       <main className={styles.main}>
         <div className={styles.postCardBox}>
           {posts.map((post: Post) => (
-            <div key={post.id} className={styles.postCard}>
               <Link href={`posts/${post.id}`} className={styles.postCardLink}>
-                <h2 className={styles.postTitle}>{post.title}</h2>
-                <p className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
-                <p className={styles.postContent}>{post.content}</p>
+                <div key={post.id} className={styles.postCard}>
+                    <h2 className={styles.postTitle}>{post.title}</h2>
+                    <p className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
+                    <p className={styles.postContent}>{post.content}</p>
+                </div>
               </Link>
-            </div>
           ))}
         </div>
            

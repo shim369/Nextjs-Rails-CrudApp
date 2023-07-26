@@ -35,14 +35,13 @@ export default function Admin({ posts }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+        <div className={styles.container}>
         <Link href="/createPost" className={styles.createButton}>Create Post</Link>
+        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
         <div>
           {posts.map((post: Post) => (
             <div key={post.id} className={styles.postCard}>
-              <Link href={`posts/${post.id}`} className={styles.postCardBox}>
-                <h2>{post.title}</h2>
-              </Link>
+              <h2>{post.title}</h2>
               <p>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
               <p>{post.content}</p>
               <Link href={`/editPost/${post.id}`}>
@@ -50,12 +49,11 @@ export default function Admin({ posts }: Props) {
               </Link>
               <button className={styles.deleteButton}
                 onClick={() => handleDelete(post.id)}
-              >
-                Delete</button>
+              >Delete</button>
             </div>
           ))}
         </div>
-           
+        </div>
       </main>
     </>
   )
