@@ -2,7 +2,8 @@ import React from 'react'
 import { Post } from '@/types'
 import { useRouter } from 'next/router'
 import styles from '@/styles/Home.module.css'
-import Header from '../components/header';
+import Header from '../components/header'
+import { useSession } from 'next-auth/react'
 
 type Props = {
     post: Post;
@@ -36,6 +37,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 
 const Post = ({ post }: Props) => {
     const router = useRouter();
+    const { data: session } = useSession();
 
     if (router.isFallback) {
         return <div>Loading...</div>;
@@ -43,7 +45,7 @@ const Post = ({ post }: Props) => {
 
     return (
         <>
-        <Header />
+        <Header session={session} />
         <main className={styles.main}>
             <div className={styles.container}>
                 <h1 className={styles.blogTitle}>{post.title}</h1>

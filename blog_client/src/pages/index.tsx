@@ -2,7 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Home.module.css'
 import { Post } from '@/types'
-import Header from './components/header';
+import Header from './components/header'
+import { useSession } from 'next-auth/react'
 
 type Props = {
   posts: Post[];
@@ -10,6 +11,7 @@ type Props = {
 
 
 export default function Home({ posts }: Props) {
+  const { data: session } = useSession();
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function Home({ posts }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header session={session} />
       <main className={styles.main}>
         <div className={styles.postCardBox}>
           {posts.map((post: Post) => (
