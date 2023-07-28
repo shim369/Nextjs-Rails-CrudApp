@@ -4,7 +4,8 @@ import styles from '@/styles/Home.module.css'
 import { Post } from '@/types'
 import axios from "axios"
 import { useRouter } from 'next/router'
-import { signOut } from 'next-auth/react'
+import Header from './components/header'
+import { signOut,useSession } from 'next-auth/react'
 
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export default function Admin({ posts }: Props) {
+  const { data: session } = useSession();
   const router = useRouter();
 
   const handleDelete = async (postId: string) => {
@@ -25,6 +27,9 @@ export default function Admin({ posts }: Props) {
   const handleLogout = () => {
     signOut({ callbackUrl: `${window.location.origin}/` });
   }
+  const handleCreatePost = () => {
+    router.push('/createPost')
+  }
 
   return (
     <>
@@ -34,10 +39,10 @@ export default function Admin({ posts }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header session={session} />
       <main className={styles.main}>
         <div className={styles.container}>
-        <Link href="/createPost" className={styles.createButton}>Create Post</Link>
-        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+        <button onClick={handleCreatePost}>Create Post</button>
         <div>
           {posts.map((post: Post) => (
             <div key={post.id} className={styles.postCard}>
