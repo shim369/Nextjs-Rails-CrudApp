@@ -24,8 +24,6 @@ export default function LoginPage() {
           email, 
           password, 
           callbackUrl: `${window.location.origin}/admin` 
-        }).then(() => {
-          window.location.href = "/admin";
         }).catch((error) => {
           console.error(error);
           setLoginError("An unexpected error occurred");
@@ -38,7 +36,8 @@ export default function LoginPage() {
       console.error(error);
       setLoginError("An unexpected error occurred");
     }
-  };  
+  };
+ 
   
 
   return (

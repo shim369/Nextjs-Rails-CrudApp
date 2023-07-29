@@ -3,7 +3,7 @@ import styles from '@/styles/style.module.css'
 import axios from "axios"
 import { useRouter } from 'next/router'
 import Header from './components/header'
-import { useSession } from 'next-auth/react'
+import { GetSessionParams, getSession, useSession } from 'next-auth/react'
 
 const CreatePost = () => {
     const [title, setTitle] = useState("");
@@ -71,3 +71,20 @@ const CreatePost = () => {
 }
 
 export default CreatePost
+
+export async function getServerSideProps(context: GetSessionParams | undefined) {
+    const session = await getSession(context)
+  
+    if (!session) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
+    }
+  
+    return {
+      props: {},
+    }
+}

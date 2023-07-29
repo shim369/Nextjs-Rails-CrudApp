@@ -87,6 +87,15 @@ const EditPost = ({ post }: Props) => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context)
   
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  }
+
   if (!context.params) {
     return {
       notFound: true
