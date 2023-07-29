@@ -1,7 +1,7 @@
 import React from 'react'
 import { Post } from '@/types'
 import { useRouter } from 'next/router'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/style.module.css'
 import Header from '../components/header'
 import { useSession } from 'next-auth/react'
 
@@ -45,16 +45,16 @@ const Post = ({ post }: Props) => {
 
     return (
         <>
-        <Header session={session} />
-        <main className={styles.main}>
-            <div className={styles.container}>
-                <h1 className={styles.blogTitle}>{post.title}</h1>
-                <div className={styles.blogCreatedDate}>{post.created_at}</div>
-                <div className={styles.blogUpdatedDate}>{post.updated_at}</div>
-                <div className={styles.blogContent}>{post.content}</div>
-            </div>
-        </main>
-    </>
+            <Header session={session} />
+            <main className={styles.main}>
+                <div className={styles.container}>
+                    <h1 className={styles.postTitle}>{post.title}</h1>
+                    <div className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</div>
+                    <div className={styles.postDate}><i className="material-icons">update</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.updated_at))}</div>
+                    <div className={styles.postContent}>{post.content}</div>
+                </div>
+            </main>
+        </>
     )
 }
 

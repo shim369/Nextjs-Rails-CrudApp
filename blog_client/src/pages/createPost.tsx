@@ -1,12 +1,15 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import styles from '@/styles/Post.module.css'
+import styles from '@/styles/style.module.css'
 import axios from "axios"
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
+import Header from './components/header'
+import { useSession } from 'next-auth/react'
 
 const CreatePost = () => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const router = useRouter();
+    const { data: session } = useSession();
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -23,22 +26,27 @@ const CreatePost = () => {
     }
 
     return (
-        <div className={styles.container}>
-            <h1>ブログ新規登録</h1>
-            <form onSubmit={handleSubmit}>
-                <label>タイトル</label>
-                <input
-                    type="text"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
-                />
-                <label>本文</label>
-                <textarea
-                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
-                />
-                <button type='submit'>投稿</button>
-            </form>
+        <>
+            <Header session={session} />
+            <main className={styles.main}>
+                <div className={styles.createBox}>
+                    <h1 className={styles.pageTitle}>Create New Post</h1>
+                    <form onSubmit={handleSubmit}>
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+                        />
+                        <label>Contents</label>
+                        <textarea
+                            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
+                        />
+                        <button type='submit'>Post</button>
+                    </form>
 
-        </div>
+                </div>
+            </main>
+        </>
     )
 }
 

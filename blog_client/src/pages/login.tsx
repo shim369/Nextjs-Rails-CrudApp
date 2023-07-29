@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react'
 import axios from 'axios';
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/style.module.css'
 
 export default function LoginPage() {
   const [isEmailSubmitted, setEmailSubmitted] = useState(false);

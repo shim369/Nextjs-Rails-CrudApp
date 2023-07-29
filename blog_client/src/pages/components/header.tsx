@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/style.module.css'
 import { signOut, useSession } from 'next-auth/react'
 import { Session } from 'next-auth' 
 
@@ -19,7 +19,7 @@ const Header = ({ session: serverSession }: { session: Session | null | undefine
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>Next.js + Rails Blog</h1>
+      <h1 className={styles.logo}><Link href="/">Next.js + Rails Blog</Link></h1>
       <div className={styles.headerLinks}>
         { session ? 
           (<button onClick={handleSignOut}>Log out</button>) :

@@ -21,6 +21,7 @@
     cursor: pointer;
     display: block;
     width: 32%;
+    margin-bottom: 20px;
 }
 
 .postCardLink:hover {
@@ -39,7 +40,7 @@
 
 .postTitle {
     margin-bottom: 10px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: normal;
 }
 
@@ -59,8 +60,8 @@
     font-size: 1em;
 }
 
-.loginBox {
-    /* width: 80%; */
+.loginBox, .createBox {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import styles from '@/styles/Home.module.css'
+import styles from '@/styles/style.module.css'
 import axios from "axios"
 import { useRouter } from 'next/router'
 import Header from '../components/header'
@@ -49,7 +49,7 @@ const EditPost = ({ post }: Props) => {
       <>
       <Header session={session} />
       <main className={styles.main}>
-        <div className={styles.container}>
+        <div className={styles.createBox}>
             <h1 className={styles.pageTitle}>Edit Blog</h1>
             <form onSubmit={handleSubmit} className={styles.form}>
                 <label>Title</label>
