@@ -29,7 +29,7 @@ export default function Home({ posts }: Props) {
                 <div key={post.id} className={styles.postCard}>
                     <h2 className={styles.postTitle}>{post.title}</h2>
                     <p className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
-                    <p className={styles.postContent}>{post.content}</p>
+                    <p className={styles.postContent}>{post.content.substring(0, 80)}</p>
                 </div>
               </Link>
           ))}
