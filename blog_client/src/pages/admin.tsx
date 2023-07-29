@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import Header from './components/header'
 import { signOut,useSession } from 'next-auth/react'
 
-
 type Props = {
   posts: Post[];
 };
@@ -48,6 +47,7 @@ export default function Admin({ posts }: Props) {
             <div key={post.id} className={styles.postCard}>
               <h2>{post.title}</h2>
               <p>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
+              {post.image_url && <img src={post.image_url} alt={post.title}/>}
               <p>{post.content}</p>
               <Link href={`/editPost/${post.id}`}>
                 <button className={styles.editButton}>Edit</button>

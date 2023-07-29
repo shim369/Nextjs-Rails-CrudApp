@@ -48,10 +48,15 @@ const Post = ({ post }: Props) => {
             <Header session={session} />
             <main className={styles.main}>
                 <div className={styles.container}>
-                    <h1 className={styles.postTitle}>{post.title}</h1>
-                    <div className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</div>
-                    <div className={styles.postDate}><i className="material-icons">update</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.updated_at))}</div>
-                    <div className={styles.postContent}>{post.content}</div>
+                    <div className={styles.detailBox}>
+                        <h1 className={styles.blogTitle}>{post.title}</h1>
+                        <div className={styles.dateBox}>
+                            <div className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</div>
+                            <div className={styles.postDate}><i className="material-icons">update</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.updated_at))}</div>
+                        </div>
+                        <img src={post.image_url || '/no-image.jpg'} className={styles.blogImage} />
+                        <div className={styles.postContent}>{post.content}</div>
+                    </div>
                 </div>
             </main>
         </>

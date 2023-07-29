@@ -13,6 +13,8 @@ type Props = {
 export default function Home({ posts }: Props) {
   const { data: session } = useSession();
 
+  console.log(posts);
+
   return (
     <>
       <Head>
@@ -24,12 +26,12 @@ export default function Home({ posts }: Props) {
       <Header session={session} />
       <main className={styles.main}>
         <div className={styles.postCardBox}>
-          {posts.map((post: Post) => (
-              <Link href={`posts/${post.id}`} className={styles.postCardLink}>
-                <div key={post.id} className={styles.postCard}>
+          {Array.isArray(posts) && posts.map((post: Post) => (
+              <Link key={post.id} href={`posts/${post.id}`} className={styles.postCardLink}>
+                <div className={styles.postImageBox}><img src={post.image_url || '/no-image.jpg'} alt="Post image" className={styles.postImage} /></div>
+                <div className={styles.postCard}>
                     <h2 className={styles.postTitle}>{post.title}</h2>
                     <p className={styles.postDate}><i className="material-icons">schedule</i>{ new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(new Date(post.created_at))}</p>
-                    <p className={styles.postContent}>{post.content.substring(0, 80)}</p>
                 </div>
               </Link>
           ))}
