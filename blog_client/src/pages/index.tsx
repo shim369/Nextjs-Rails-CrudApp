@@ -9,11 +9,8 @@ type Props = {
   posts: Post[];
 };
 
-
 export default function Home({ posts }: Props) {
   const { data: session } = useSession();
-
-  console.log(posts);
 
   return (
     <>

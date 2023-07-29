@@ -5,7 +5,7 @@ import { Post } from '@/types'
 import axios from "axios"
 import { useRouter } from 'next/router'
 import Header from './components/header'
-import { signOut,useSession } from 'next-auth/react'
+import { GetSessionParams, getSession, useSession } from 'next-auth/react'
 
 type Props = {
   posts: Post[];
@@ -23,9 +23,7 @@ export default function Admin({ posts }: Props) {
       alert("削除に失敗しました")
     }
   }
-  const handleLogout = () => {
-    signOut({ callbackUrl: `${window.location.origin}/` });
-  }
+
   const handleCreatePost = () => {
     router.push('/createPost')
   }
@@ -64,14 +62,24 @@ export default function Admin({ posts }: Props) {
   )
 }
 
-export async function getStaticProps() {
-    const res = await fetch("http://localhost:3001/api/v1/posts");
-    const posts = await res.json();
-  
+export async function getServerSideProps(context: GetSessionParams | undefined) {
+  const session = await getSession(context)
+
+  if (!session) {
     return {
-      props: {
-        posts,
+      redirect: {
+        destination: '/login',
+        permanent: false,
       },
-      revalidate: 60 * 60 * 24,
     }
+  }
+
+  const res = await fetch("http://localhost:3001/api/v1/posts");
+  const posts = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  }
 }
