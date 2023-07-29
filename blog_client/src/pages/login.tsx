@@ -72,6 +72,7 @@ const EmailInputForm: React.FC<EmailInputFormProps> = ({ handleEmailSubmit, emai
       placeholder='Email'
       value={email}
       onChange={(e) => setEmail(e.target.value)}
+      className={styles.email}
       required
     /></div>
     <button type='submit'>Continue</button>
@@ -93,6 +94,7 @@ const PasswordInputForm: React.FC<PasswordInputFormProps> = ({ handlePasswordSub
       placeholder='Password'
       value={password}
       onChange={(e) => setPassword(e.target.value)}
+      className={styles.password}
       required
     />
     {loginError && <p>{loginError}</p>}

@@ -121,3 +121,8 @@
     object-fit: cover;
     margin-bottom: 20px;
 }
+
+.email, .password {
+    width: 100%;
+    max-width: 300px;
+}
